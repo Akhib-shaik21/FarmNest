@@ -1,0 +1,26 @@
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# dotenv environment variables
+.env
+client/.env
+server/.env
+
+# Build folders
+client/build/
+.parcel-cache/
+.cache/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS generated files
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
