@@ -1,5 +1,5 @@
-const Order = require('../models/Order');
-const Product = require('../models/Product');
+const Order = require('../models/order');
+const Product = require('../models/product');
 
 // @desc    Create new order (for COD)
 // @route   POST /api/orders
