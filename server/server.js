@@ -17,7 +17,8 @@ connectDB(); // Call the async function to connect to MongoDB
 // Middleware for CORS (Cross-Origin Resource Sharing)
 const allowedOrigins = [
   'http://localhost:3000', // Default Create React App port (keep it)
-  'http://localhost:3001', // Your current frontend port (from previous diagnostics)
+  'http://localhost:3001',
+  'https://farm-nest-zeta.vercel.app', // Your current frontend port (from previous diagnostics)
   // IMPORTANT: When you deploy your frontend (e.g., to Vercel/Netlify),
   // add its deployed URL here, like: 'https://your-frontend-app.vercel.app'
 ];
