@@ -14,7 +14,7 @@ const OtpVerificationPage = () => {
   // Redirect if already logged in
   useEffect(() => {
     if (user) {
-      navigate(user.role === 'admin' ? '/admin/dashboard' : '/user/dashboard');
+      navigate(user.role === 'admin' ? '/admin/dashboard' : '/products'); // Redirect customers to products page
     }
   }, [user, navigate]);
 
@@ -31,27 +31,27 @@ const OtpVerificationPage = () => {
     try {
       await verifyOtp(email, otp);
       setMessage('Account verified successfully!');
-      navigate('/user/dashboard'); // Or wherever you want to redirect after successful login
+      navigate('/products'); // Redirect to products page after successful verification
     } catch (err) {
-      setError(err || 'OTP verification failed');
+      setError(err.message || String(err) || 'OTP verification failed');
     }
   };
 
   return (
-    <div className="container mx-auto p-4 flex justify-center items-center min-h-[calc(100vh-100px)]">
-      <form onSubmit={submitHandler} className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-3xl font-bold text-primary-green mb-6 text-center">Verify Your Account</h2>
-        <p className="text-center text-gray-600 mb-6">An OTP has been sent to your email: <span className="font-semibold">{email}</span></p>
+    <div className="container mx-auto p-4 flex justify-center items-center min-h-[calc(100vh-100px)] bg-neutral-light"> {/* Added background */}
+      <form onSubmit={submitHandler} className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md border border-neutral-light"> {/* Enhanced styling */}
+        <h2 className="text-3xl font-bold text-primary-brand mb-6 text-center">Verify Your Account</h2> {/* Primary brand color */}
+        <p className="text-center text-neutral-dark mb-6">An OTP has been sent to your email: <span className="font-semibold">{email}</span></p> {/* Neutral dark text */}
 
-        {message && <div className="bg-green-100 text-green-700 p-3 rounded mb-4">{message}</div>}
-        {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">{error}</div>}
+        {message && <div className="bg-primary-brand text-text-light p-3 rounded mb-4 text-center">{message}</div>} {/* Styled with new colors */}
+        {error && <div className="bg-red-600 text-white p-3 rounded mb-4 text-center">{error}</div>} {/* Styled with new colors */}
 
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="otp">Enter OTP</label>
+          <label className="block text-neutral-dark text-sm font-bold mb-2" htmlFor="otp">Enter OTP</label> {/* Neutral dark text */}
           <input
             type="text"
             id="otp"
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline text-center text-lg tracking-widest"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-neutral-dark leading-tight focus:outline-none focus:shadow-outline focus:border-primary-brand text-center text-lg tracking-widest" // Focus border color
             value={otp}
             onChange={(e) => setOtp(e.target.value)}
             maxLength="6"
@@ -59,9 +59,10 @@ const OtpVerificationPage = () => {
           />
         </div>
 
+        {/* VERIFY BUTTON - THIS IS THE RELEVANT PART */}
         <button
           type="submit"
-          className="bg-primary-green hover:bg-dark-green text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+          className="bg-primary-brand hover:bg-secondary-brand text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300 transform hover:scale-105"
         >
           Verify
         </button>
